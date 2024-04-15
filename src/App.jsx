@@ -50,7 +50,7 @@ function App() {
 		{ romanji: 'n', hiragana: 'ん' }
   ]
 
-  const [input, setInput] = userState("")
+  const [input, setInput] = useState("")
   const [current, setCurrent] = useState(0)
 
   const [streak, setStreak] = useState(0)
@@ -71,16 +71,16 @@ function App() {
     event.preventDefault()
     if (input.toLowerCase() === hiragana[current].romanji) {
       setStreak(streak + 1)
-      setMaxStreak(Math.max(streak, maxStreak))
+      setMaxStreak(Math.max(streak + 1, maxStreak))
       setError(false)
 
       localStorage.setItem('maxStreak', Math.max(streak, maxStreak))
       localStorage.setItem('streak', streak + 1)
     } else {
       setStreak(0)
-      setError('Wrong! The correct answer for ${hiragana[current].hiragana} is ${hiragana[current].romanji}')
+      setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is ${hiragana[current].romanji}`) // use backtick for interpolation
 
-      localStorage.setItem('steak', 0)
+      localStorage.setItem('streak', 0)
     }
     // reset everything
     setInput('')
@@ -89,13 +89,33 @@ function App() {
 
     useEffect(() => {
       setRandomHiragana()
-      setStreak(localStorage.getItem('streak') || 0)
-      setMaxStreak(localStorage.getItem('maxStrak' || 0))
+      setStreak(parseInt(localStorage.getItem('streak')) || 0)
+      setMaxStreak(parseInt(localStorage.getItem('maxStreak')) || 0)
     }, [])
 
   return (
    <div>
-    <h1>Konnichiwa</h1>
+    <header>
+      <h1>Hiragana Quiz</h1>
+        <div>
+          <p>{streak}/{maxStreak}</p>
+        </div>
+    </header>
+
+    <div>
+      {hiragana[current].hiragana}
+    </div>
+
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+        type="text"
+        value={input}
+        onChange={handleChange}/>
+      </form>
+    </div>
+
+    {error && <p>{error}</p>}
    </div>
   )
 }
