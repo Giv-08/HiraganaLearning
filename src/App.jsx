@@ -63,13 +63,35 @@ function App() {
     setCurrent(randomIndex)
   }
 
-  // const handleChange = event => {
-  //   setInput(event.target.value)
-  // }
+  const handleChange = event => {
+    setInput(event.target.value)
+  }
 
-  // const handleSubmit  event => {
-  //   event.preventDefault()
-  // }
+  const handleSubmit = event => {
+    event.preventDefault()
+    if (input.toLowerCase() === hiragana[current].romanji) {
+      setStreak(streak + 1)
+      setMaxStreak(Math.max(streak, maxStreak))
+      setError(false)
+
+      localStorage.setItem('maxStreak', Math.max(streak, maxStreak))
+      localStorage.setItem('streak', streak + 1)
+    } else {
+      setStreak(0)
+      setError('Wrong! The correct answer for ${hiragana[current].hiragana} is ${hiragana[current].romanji}')
+
+      localStorage.setItem('steak', 0)
+    }
+    // reset everything
+    setInput('')
+    setRandomHiragana()
+    }
+
+    useEffect(() => {
+      setRandomHiragana()
+      setStreak(localStorage.getItem('streak') || 0)
+      setMaxStreak(localStorage.getItem('maxStrak' || 0))
+    }, [])
 
   return (
    <div>
