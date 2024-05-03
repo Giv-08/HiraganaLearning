@@ -113,6 +113,12 @@ function App() {
     setInput(event.target.value)
   }
 
+  const resetStreak = event => {
+    event.preventDefault()
+    setStreak(0)
+    setMaxStreak(0)
+  }
+
   const handleSubmit = event => {
     event.preventDefault()
     if (input.toLowerCase() === hiragana[current].romanji) {
@@ -148,11 +154,11 @@ function App() {
     <header>
       <h1 className="text-[4rem] font-bold uppercase pt-32">Hiragana Quiz</h1>
         <div>
-          <p className="text-3xl p-10" >{streak}/{maxStreak}</p>
+          <p className="text-[2.5rem] p-10" >{streak}/{maxStreak}</p>
         </div>
     </header>
 {/* ramdom hiragana display */}
-    <div className='text-[14rem]'>
+    <div className='text-[14rem] font-bold'>
       {hiragana[current].hiragana}
     </div>
 
@@ -174,7 +180,7 @@ function App() {
       {error && <p>{error}</p>}
     </div>
 
-    <button className='w-48 h-10 text-white bg-red-200 hover:bg-red-400 mt-10 relative z-2 rounded-lg'>Reset Streak!</button>
+    <button onClick={resetStreak} className='w-48 h-10 text-white bg-red-200 shadow-lg hover:bg-red-400 mt-10 relative z-2 rounded-lg ease-in duration-300'>Reset Streak!</button>
 {/* footer */}
     <div className='flex justify-center h-5'>
         <footer className='w-full h-20 bg-rose-100 z-2 absolute bottom-0 text-rose-300 p-8'>
