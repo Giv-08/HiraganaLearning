@@ -146,20 +146,24 @@ function App() {
         style={{ backgroundImage: "url(https://wallpapers.com/images/hd/japanese-nature-mountain-view-b43hs4d102e4deiq.jpg)" }}>
     </div>
     <header>
-      <h1 className="text-5xl font-bold uppercase pt-48">Hiragana Quiz</h1>
+      <h1 className="text-[4rem] font-bold uppercase pt-32">Hiragana Quiz</h1>
         <div>
-          <p className="text-3xl p-20" >{streak}/{maxStreak}</p>
+          <p className="text-3xl p-10" >{streak}/{maxStreak}</p>
         </div>
     </header>
 {/* ramdom hiragana display */}
-    <div className='text-4xl py-10 '>
+    <div className='text-[14rem]'>
       {hiragana[current].hiragana}
+    </div>
+
+    <div>
+      <p>Please type the answer in Romanji</p>
     </div>
 {/* input box */}
     <div>
       <form onSubmit={handleSubmit}>
         <input
-        className='w-3/12 h-10 text-center text-rose-400 p-2 relative z-2 rounded-lg'
+        className='w-3/12 h-10 text-center text-rose-400 p-2 relative z-2 rounded-lg mt-5'
         type="text"
         value={input}
         onChange={handleChange}/>
@@ -171,6 +175,13 @@ function App() {
     </div>
 
     <button className='w-48 h-10 text-white bg-red-200 hover:bg-red-400 mt-10 relative z-2 rounded-lg'>Reset Streak!</button>
+{/* footer */}
+    <div className='flex justify-center h-5'>
+        <footer className='w-full h-20 bg-rose-100 z-2 absolute bottom-0 text-rose-300 p-8'>
+        ©2024 Made with ♥️ by Chutima
+        </footer>
+      </div>
+
 
    </div>
   )
