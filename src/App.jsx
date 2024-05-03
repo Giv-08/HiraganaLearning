@@ -118,13 +118,13 @@ function App() {
     if (input.toLowerCase() === hiragana[current].romanji) {
       setStreak(streak + 1)
       setMaxStreak(Math.max(streak + 1, maxStreak))
-      setError(false)
+      setError('Correct! かんぺきです!')
 
       localStorage.setItem('maxStreak', Math.max(streak, maxStreak))
       localStorage.setItem('streak', streak + 1)
     } else {
       setStreak(0)
-      setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is ${hiragana[current].romanji}`) // use backtick for interpolation
+      setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is "${hiragana[current].romanji}"`) // use backtick for interpolation
 
       localStorage.setItem('streak', 0)
     }
@@ -141,29 +141,37 @@ function App() {
 
   return (
     // body
-   <div className='min-h-screen bg-cyan-800 text-white text-center'>
-
+   <div className='min-h-screen bg-sky-800 text-red-200 text-center'>
+ <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-20"
+        style={{ backgroundImage: "url(https://wallpapers.com/images/hd/japanese-nature-mountain-view-b43hs4d102e4deiq.jpg)" }}>
+    </div>
     <header>
-      <h1 className="text-2xl font-bold uppercase p-20">Hiragana Quiz</h1>
+      <h1 className="text-5xl font-bold uppercase pt-48">Hiragana Quiz</h1>
         <div>
-          <p className='p-10'>{streak}/{maxStreak}</p>
+          <p className="text-3xl p-20" >{streak}/{maxStreak}</p>
         </div>
     </header>
 {/* ramdom hiragana display */}
-    <div>
+    <div className='text-4xl py-10 '>
       {hiragana[current].hiragana}
     </div>
 {/* input box */}
     <div>
       <form onSubmit={handleSubmit}>
         <input
+        className='w-3/12 h-10 text-center text-rose-400 p-2 relative z-2 rounded-lg'
         type="text"
         value={input}
         onChange={handleChange}/>
       </form>
     </div>
 
-    {error && <p>{error}</p>}
+    <div className='mt-10 text-2xl'>
+      {error && <p>{error}</p>}
+    </div>
+
+    <button className='w-48 h-10 text-white bg-red-200 hover:bg-red-400 mt-10 relative z-2 rounded-lg'>Reset Streak!</button>
+
    </div>
   )
 }
