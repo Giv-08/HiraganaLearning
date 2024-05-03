@@ -140,18 +140,20 @@ function App() {
     }, [])
 
   return (
-   <div>
+    // body
+   <div className='min-h-screen bg-cyan-800 text-white text-center'>
+
     <header>
-      <h1>Hiragana Quiz</h1>
+      <h1 className="text-2xl font-bold uppercase p-20">Hiragana Quiz</h1>
         <div>
-          <p>{streak}/{maxStreak}</p>
+          <p className='p-10'>{streak}/{maxStreak}</p>
         </div>
     </header>
-
+{/* ramdom hiragana display */}
     <div>
       {hiragana[current].hiragana}
     </div>
-
+{/* input box */}
     <div>
       <form onSubmit={handleSubmit}>
         <input
