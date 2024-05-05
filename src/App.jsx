@@ -98,7 +98,6 @@ function App() {
 
   const [input, setInput] = useState("")
   const [current, setCurrent] = useState(0)
-
   const [streak, setStreak] = useState(0)
   const [maxStreak, setMaxStreak] = useState(0)
 
@@ -111,6 +110,13 @@ function App() {
 
   const handleChange = event => {
     setInput(event.target.value)
+  }
+
+  const pass = event => {
+    event.preventDefault()
+    setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is "${hiragana[current].romanji}"`) // show message only 3 secs
+    setTimeout(() => { setError }, 2000);
+    setRandomHiragana()
   }
 
   const resetStreak = event => {
@@ -179,8 +185,10 @@ function App() {
     <div className='mt-10 text-2xl'>
       {error && <p>{error}</p>}
     </div>
-
-    <button onClick={resetStreak} className='w-48 h-10 text-white bg-red-200 shadow-lg hover:bg-red-400 mt-10 relative z-2 rounded-lg ease-in duration-300'>Reset Streak!</button>
+    <div className='flex flex-col items-center'>
+      <button onClick={pass} className='w-48 h-10 text-white bg-red-200 shadow-lg hover:bg-red-400 mt-10 relative z-2 rounded-lg ease-in duration-300'>Pass!</button>
+      <button onClick={resetStreak} className='w-48 h-10 text-white bg-rose-400 shadow-lg hover:bg-rose-600 mt-10 relative z-2 rounded-lg ease-in duration-300'>Reset streak!</button>
+    </div>
 {/* footer */}
     <div className='flex justify-center h-5'>
         <footer className='w-full h-20 bg-rose-100 z-2 absolute bottom-0 text-rose-300 p-8'>
