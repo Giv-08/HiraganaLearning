@@ -128,7 +128,6 @@ function App() {
       setMaxStreak(0)
       setCount(1)
     }
-    console.log(count)
     setTimeout(() => {
       setRandomHiragana()
     }, 2000);
@@ -150,10 +149,15 @@ function App() {
 
   const handleSubmit = event => {
     event.preventDefault()
+    const congrats = ["Correct! かんぺきです!","Great job! よくできました!","Awesome! 良くやりましたね", "Excellent! すごいです!"]
+    const randomCongrats = congrats[Math.floor(Math.random() * congrats.length)]
     if (input.toLowerCase() === hiragana[current].romanji) {
       setStreak(streak + 1)
       setMaxStreak(Math.max(streak + 1, maxStreak))
-      setError('Correct! かんぺきです!')
+      setError(randomCongrats)
+      setTimeout(() => {
+        resetError()
+      }, 2000);
 
       localStorage.setItem('maxStreak', Math.max(streak, maxStreak))
       localStorage.setItem('streak', streak + 1)
