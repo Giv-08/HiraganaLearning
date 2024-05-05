@@ -111,14 +111,22 @@ function App() {
   const handleChange = event => {
     setInput(event.target.value)
   }
-
+//  pass button
   const pass = event => {
     event.preventDefault()
+    setTimeout(() => {
+      setRandomHiragana()
+    }, 3000);
     setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is "${hiragana[current].romanji}"`) // show message only 3 secs
-    setTimeout(() => { setError }, 2000);
-    setRandomHiragana()
+    setTimeout(() => {
+      resetError()
+    }, 2000);
   }
-
+// show answer only 2 secs
+  const resetError = () => {
+  setError(``)
+  }
+// reset streak button
   const resetStreak = event => {
     event.preventDefault()
     setStreak(0)
@@ -137,6 +145,9 @@ function App() {
     } else {
       setStreak(0)
       setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is "${hiragana[current].romanji}"`) // use backtick for interpolation
+      setTimeout(() => {
+        resetError()
+      }, 2000);
 
       localStorage.setItem('streak', 0)
     }
