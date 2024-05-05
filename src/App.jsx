@@ -100,7 +100,7 @@ function App() {
   const [current, setCurrent] = useState(0)
   const [streak, setStreak] = useState(0)
   const [maxStreak, setMaxStreak] = useState(0)
-
+  const [count, setCount] = useState(1) // start counting from 1
   const [error, setError] = useState(false)
 
   const setRandomHiragana = () => {
@@ -111,22 +111,37 @@ function App() {
   const handleChange = event => {
     setInput(event.target.value)
   }
-//  pass button
+
+  // when refreshing the page, set everything back to zero
+    window.onload = function() {
+      setStreak(0)
+      setMaxStreak(0)
+      setCount(1)
+    }
+
+  //  pass button
   const pass = event => {
     event.preventDefault()
+      setCount(count+1)  //pass 3 times
+    if (count > 3) {
+      setStreak(0)
+      setMaxStreak(0)
+      setCount(1)
+    }
+    console.log(count)
     setTimeout(() => {
       setRandomHiragana()
-    }, 3000);
+    }, 2000);
     setError(`Wrong! The correct answer for ${hiragana[current].hiragana} is "${hiragana[current].romanji}"`) // show message only 3 secs
     setTimeout(() => {
       resetError()
     }, 2000);
   }
-// show answer only 2 secs
+  // show answer only 2 secs
   const resetError = () => {
-  setError(``)
+    setError(``)
   }
-// reset streak button
+  // reset streak button
   const resetStreak = event => {
     event.preventDefault()
     setStreak(0)
