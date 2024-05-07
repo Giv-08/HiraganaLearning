@@ -217,6 +217,7 @@ function App() {
     </div>
     <div className='flex flex-col items-center'>
       <button onClick={pass} className='border-2 border-rose-100 w-48 h-10 text-white bg-red-200 shadow-lg hover:bg-red-400 mt-10 relative z-2 rounded-lg ease-in duration-300'>Pass!</button>
+      <span className='mt-3'>After 3 passes, your streak will go back to 0</span>
       <button onClick={resetStreak} className='border-2 border-rose-100 w-48 h-10 text-white bg-rose-400 shadow-lg hover:bg-rose-600 mt-10 relative z-2 rounded-lg ease-in duration-300'>Reset streak!</button>
     </div>
 {/* footer */}
