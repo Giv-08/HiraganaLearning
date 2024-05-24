@@ -194,7 +194,7 @@ function App() {
         </div>
     </header>
 {/* ramdom hiragana display */}
-    <div className='text-[14rem] font-bold'>
+    <div className='text-[12rem] font-bold'>
       {hiragana[current].hiragana}
     </div>
 
@@ -217,12 +217,12 @@ function App() {
     </div>
     <div className='flex flex-col items-center'>
       <button onClick={pass} className='border-2 border-rose-100 w-48 h-10 text-white bg-red-200 shadow-lg hover:bg-red-400 mt-10 relative z-2 rounded-lg ease-in duration-300'>Pass!</button>
-      <span className='mt-3'>After 3 passes, your streak will go back to 0</span>
+      <span className='m-6'>After 3 passes, your streak will go back to 0</span>
       <button onClick={resetStreak} className='border-2 border-rose-100 w-48 h-10 text-white bg-rose-400 shadow-lg hover:bg-rose-600 mt-10 relative z-2 rounded-lg ease-in duration-300'>Reset streak!</button>
     </div>
 {/* footer */}
-    <div className='flex justify-center h-5'>
-        <footer className='w-full h-20 bg-rose-100 z-2 absolute bottom-0 text-rose-300 p-8'>
+    <div className='relative h-5'>
+        <footer className='absolute flex justify-center items-center w-full h-16 bg-rose-100 z-2 absolute bottom-0 text-rose-300 p-8'>
         ©2024 Made with ♥️ by Chutima
         </footer>
       </div>
